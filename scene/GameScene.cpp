@@ -67,6 +67,7 @@ void GameScene::Initialize() {
 	    // ビュープロジェクションの初期化
 	    viewProjection_.Initialize();
 }
+
 void GameScene::Update() {
 	// スプライトの今の座標を取得
 	XMFLOAT2 position = sprite_->GetPosition();
