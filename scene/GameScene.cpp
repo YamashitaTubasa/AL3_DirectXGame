@@ -68,6 +68,11 @@ void GameScene::Initialize() {
 	//ファークリップ距離を設定
 	viewProjection_.farZ = 53.0f;
 
+	//// 親(0番)
+	//worldTransform_[0].Initialize();
+	//// 子(1番)
+	//worldTransform_[1].trandform_ = {0, 4.5f, 0};
+
 	// ビュープロジェクションの初期化
 	viewProjection_.Initialize();
 }
