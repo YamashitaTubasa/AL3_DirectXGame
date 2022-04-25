@@ -25,9 +25,9 @@ void GameScene::Initialize() {
 	// 3Dモデルの生成
 	model_ = Model::Create();
 	// サウンドデータの読み込み
-	soundDateHandle_ = audio_->LoadWave("se_sad03.wav");
+	/*soundDateHandle_ = audio_->LoadWave("se_sad03.wav");*/
 	// 音声再生
-	audio_->PlayWave(soundDateHandle_);
+	/*audio_->PlayWave(soundDateHandle_);*/
 	// 音声再生
 	/*voiceHandle_ = audio_->PlayWave(soundDateHandle_, true);*/
 	// ファイル名を指定してテクスチャを読み込む
@@ -49,14 +49,20 @@ void GameScene::Initialize() {
 	std::uniform_real_distribution<float> posDist(-10.0f, 10.0f);
 
 	for (size_t i = 0; i < _countof(worldTransform_); i++) {
-		// X, Y, Z, 方向のスケーリング設定
-		worldTransform_[i].scale_ = {1.0f, 1.0f, 1.0f};
-		// X, Y, Z, 輪周りの回転角を設定
-		worldTransform_[i].rotation_ = {rotDist(engine), rotDist(engine), rotDist(engine)};
-		// X, Y, Z, 輪周りの平行移動を設定
-		worldTransform_[i].translation_ = {posDist(engine), posDist(engine), posDist(engine)};
-		// ワールドトランスフォームの初期化
-		worldTransform_[i].Initialize();
+		//// X, Y, Z, 方向のスケーリング設定
+		//worldTransform_[i].scale_ = {1.0f, 1.0f, 1.0f};
+		//// X, Y, Z, 輪周りの回転角を設定
+		//worldTransform_[i].rotation_ = {rotDist(engine), rotDist(engine), rotDist(engine)};
+		//// X, Y, Z, 輪周りの平行移動を設定
+		//worldTransform_[i].translation_ = {posDist(engine), posDist(engine), posDist(engine)};
+		//// ワールドトランスフォームの初期化
+		//worldTransform_[i].Initialize();
+		// 親(0番)
+		 worldTransform_[0].Initialize();
+		// 子(1番)
+		 worldTransform_[1].translation_ = {0, 4.5f, 0};
+		 worldTransform_[1].parent_ = &worldTransform_[0];
+		 worldTransform_[1].Initialize();
 	}
 	viewProjection_.fovAngleY = XMConvertToRadians(10.0f);
 
@@ -67,11 +73,6 @@ void GameScene::Initialize() {
 	viewProjection_.nearZ = 52.0f;
 	//ファークリップ距離を設定
 	viewProjection_.farZ = 53.0f;
-
-	//// 親(0番)
-	//worldTransform_[0].Initialize();
-	//// 子(1番)
-	//worldTransform_[1].trandform_ = {0, 4.5f, 0};
 
 	// ビュープロジェクションの初期化
 	viewProjection_.Initialize();
@@ -200,6 +201,10 @@ void GameScene::Update() {
 		//デバック用表示
 		debugText_->SetPos(50, 130);
 		debugText_->Printf("nearZ:%f", viewProjection_.nearZ);
+	}
+	// キャラクター移動処理
+	{
+
 	}
 }
 
