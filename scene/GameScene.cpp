@@ -46,7 +46,6 @@ void GameScene::Initialize() {
 	//乱数範囲(座標用)
 	std::uniform_real_distribution<float> posDist(-10.0f, 10.0f);
 
-	
 	// キャラクターの大元
 	worldTransform_[PartId::Root].Initialize();
 	// 脊髄
